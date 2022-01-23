@@ -176,7 +176,12 @@ export default function Model(props) {
 					geometry={nodes.Monitor_1.geometry}
 					material={materials.TW}
 				/>
-				<mesh castShadow receiveShadow geometry={nodes.Monitor_2.geometry} />
+				<mesh
+					castShadow
+					receiveShadow
+					geometry={nodes.Monitor_2.geometry}
+					material={<meshBasicMaterial attach='material' color={'#000'} />}
+				/>
 			</group>
 			<group
 				position={[-3.226014, 1.380978, -2.625078]}
