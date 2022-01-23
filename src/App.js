@@ -1,13 +1,10 @@
 import './assets/styles/App.css';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, PresentationControls } from '@react-three/drei';
+import { PresentationControls } from '@react-three/drei';
 import Room from './components/Room';
 import { useControls } from 'leva';
-import { useRef } from 'react/cjs/react.development';
 
 function App() {
-	const bulbLight = useRef();
-
 	const { isLightOn, intensity, color } = useControls('Sijalica', {
 		isLightOn: {
 			value: true,
@@ -73,7 +70,6 @@ function App() {
 						<group rotation={[0, -Math.PI / 4, 0]}>
 							<pointLight
 								visible={isLightOn}
-								ref={bulbLight}
 								castShadow
 								position={[0, 4.5, 0]}
 								color={color}
