@@ -118,59 +118,56 @@ function App() {
 	);
 
 	return (
-		<div>
-			<p>{JSON.stringify(isDayState)}aaaaaaa</p>
-			<div className='app'>
-				{!loading && (
-					<div className='canvas'>
-						<Suspense fallback={<Loader />}>
-							<Canvas
-								shadows
-								dpr={[1, 2]}
-								camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 4, 8] }}>
-								<color attach='background' args={['#000']} />
-								<hemisphereLight
-									visible={isDayState}
-									intensity={sunLightIntensity}
-									color={0xddeeff}
-									groundColor={0x0f0e0d}
-								/>
-								<PresentationControls
-									global
-									zoom={0.8}
-									polar={[0, Math.PI / 4]}
-									azimuth={[-Math.PI / 4, Math.PI / 4]}>
-									<group rotation={[0, -Math.PI / 4, 0]}>
-										<pointLight
-											visible={isLightOnState}
-											castShadow
-											position={[0, 4.5, 0]}
-											color={color}
-											intensity={intensity}
-											distance={100}
-											decay={2}
+		<div className='app'>
+			{!loading && (
+				<div className='canvas'>
+					<Suspense fallback={<Loader />}>
+						<Canvas
+							shadows
+							dpr={[1, 2]}
+							camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 4, 8] }}>
+							<color attach='background' args={['#000']} />
+							<hemisphereLight
+								visible={isDayState}
+								intensity={sunLightIntensity}
+								color={0xddeeff}
+								groundColor={0x0f0e0d}
+							/>
+							<PresentationControls
+								global
+								zoom={0.8}
+								polar={[0, Math.PI / 4]}
+								azimuth={[-Math.PI / 4, Math.PI / 4]}>
+								<group rotation={[0, -Math.PI / 4, 0]}>
+									<pointLight
+										visible={isLightOnState}
+										castShadow
+										position={[0, 4.5, 0]}
+										color={color}
+										intensity={intensity}
+										distance={100}
+										decay={2}
+									/>
+									<mesh position={[0, 4.5, 0]}>
+										<sphereBufferGeometry
+											attach='geometry'
+											args={[0.2, 16, 8]}
 										/>
-										<mesh position={[0, 4.5, 0]}>
-											<sphereBufferGeometry
-												attach='geometry'
-												args={[0.2, 16, 8]}
-											/>
-											<meshStandardMaterial
-												visible={isLightOnState}
-												emissive={color}
-												emissiveIntensity={intensity / Math.pow(0.02, 2.0)}
-												color={color}
-												attach='material'
-											/>
-										</mesh>
-										<Room />
-									</group>
-								</PresentationControls>
-							</Canvas>
-						</Suspense>
-					</div>
-				)}
-			</div>
+										<meshStandardMaterial
+											visible={isLightOnState}
+											emissive={color}
+											emissiveIntensity={intensity / Math.pow(0.02, 2.0)}
+											color={color}
+											attach='material'
+										/>
+									</mesh>
+									<Room />
+								</group>
+							</PresentationControls>
+						</Canvas>
+					</Suspense>
+				</div>
+			)}
 		</div>
 	);
 }
