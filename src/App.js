@@ -119,6 +119,12 @@ function App() {
 
 	return (
 		<div className='app'>
+			<button
+				onClick={() =>
+					alert(`iOT Ispit kontrola\nRandom broj:${Math.random()}`)
+				}>
+				Test
+			</button>
 			{!loading && (
 				<div className='canvas'>
 					<Suspense fallback={<Loader />}>
